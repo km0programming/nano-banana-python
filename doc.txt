@@ -1,0 +1,14 @@
+python src/mix_images.py -i images/man.jpeg
+py src/mix_images.py -i images/man.jpeg
+
+python src/mix_images.py -i images/image1.jpg -i images/image2.png
+
+
+python src/mix_images.py -i images/man.jpeg --prompt "Make this person look like a pirate"
+python src/mix_images.py -i images/man.jpeg --prompt "wear a suit, and change background to an office"
+
+
+
+
+C:\GITHUB-PYTHON\nano-banana-python>C:\python\python313\python.exe -m virtualenv .venv
+

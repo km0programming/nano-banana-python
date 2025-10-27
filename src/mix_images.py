@@ -4,6 +4,17 @@ import os
 import time
 from google import genai
 from google.genai import types
+from dotenv import load_dotenv
+import urllib3 
+
+
+
+# 2. AÑADE ESTAS LÍNEAS PARA SILENCIAR EL AVISO DE SEGURIDAD
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+
+# Load environment variables from .env file
+load_dotenv()
 
 MODEL_NAME = "gemini-2.5-flash-image-preview"
 
@@ -25,7 +36,12 @@ def remix_images(
     if not api_key:
         raise ValueError("GEMINI_API_KEY environment variable not set.")
 
-    client = genai.Client(api_key=api_key)
+    try:
+        client = genai.Client(api_key=api_key)
+    except Exception as e:
+        print(f"Error client = genai.Client(api_key=api_key):  {e}")
+        return None
+
 
     contents = _load_image_parts(image_paths)
     contents.append(genai.types.Part.from_text(text=prompt))
